@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhotoPlaceholder from '../../components/PhotoPlaceholder.astro';
+import SpecialtyCard from '../../components/SpecialtyCard.astro';
+import { getCollection } from 'astro:content';
+import { INSTAGRAM_URL } from '../../lib/site-config';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const reels = [
+  { tag: 'Migration Psychology', name: 'Belonging to neither home' },
+  { tag: 'Loneliness & Belonging', name: 'Lonely in a crowd' },
+  { tag: 'Anxiety', name: 'Grounding when anxiety hits' },
+  { tag: 'Couples & Relationships', name: 'Not a fight — an unmet need' },
+  { tag: 'Migration Psychology', name: 'The unnamed grief of living abroad' },
+  { tag: 'Anxiety', name: 'Breath slows the nervous system' },
+];
+---
+
+<BaseLayout title="Home" description="Büşra Uğurcan Hanözü, Clinical Psychologist — online & in-person therapy in Turkish and English, based in Kuwait & Istanbul.">
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-primary to-primary/90 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="max-w-3xl" data-reveal>
+        <p class="font-sans text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
+          Clinical Psychologist · Kuwait &amp; Istanbul · Online
+        </p>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 italic">
+          You don't fully belong here, but not there anymore either…
+          <span class="block not-italic text-accent mt-3 text-3xl md:text-4xl">That feeling has a name.</span>
+        </h1>
+        <p class="font-sans text-lg md:text-xl text-white/90 leading-relaxed mb-8">
+          Online and in-person therapy for Turks living abroad, the Turkish community in Kuwait, and
+          English-speaking clients. Evidence-based, non-judgemental, warm.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/en/randevu" class="inline-block bg-accent hover:bg-accent/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors shadow-lg">
+            Book a Session
+          </a>
+          <a href="/en/hizmetler" class="inline-block border border-white/40 hover:bg-white/10 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+            How I work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <div class="bg-secondary border-y border-primary/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm font-sans text-gray-600">
+      <span>— 10+ years of clinical experience</span>
+      <span>— CBT · EMDR · Play Therapy</span>
+      <span>— Turkish + English</span>
+      <span>— Online &amp; in-person</span>
+    </div>
+  </div>
+
+  <!-- About summary -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div data-reveal>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-6">Hello, I'm Büşra</h2>
+          <p class="font-sans text-gray-600 leading-relaxed mb-4">
+            I'm a clinical psychologist. Since 2018 I've worked with children, adolescents and adults in my
+            private practice in Kuwait and Istanbul, offering a safe space that honours each client's own story.
+          </p>
+          <p class="font-sans text-gray-600 leading-relaxed mb-6">
+            I specialise in migration psychology, anxiety disorders, depression and relationship issues,
+            working with clients both online and in person.
+          </p>
+          <a href="/en/hakkimda" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+            Learn More
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="bg-secondary rounded-2xl p-8 text-center" data-reveal>
+          <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" labelTr="Fotoğraf eklenecek" labelEn="Photo coming soon" class="w-48 h-48 mx-auto mb-4" />
+          <p class="font-sans text-gray-500 italic">"Healing begins with the compassion you show yourself."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specialties -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">What We Can Work On Together</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Tailored therapy approaches that meet you where you are.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <SpecialtyCard
+          icon="globe"
+          title="Migration & Cultural Adjustment"
+          description="Culture shock, belonging, identity, feeling at home in neither place, acculturation stress."
+        />
+        <SpecialtyCard
+          icon="moon"
+          title="Anxiety & Depression"
+          description="Recognising symptoms, evidence-based coping skills, structured work with CBT and EMDR."
+        />
+        <SpecialtyCard
+          icon="heart"
+          title="Couples & Relationships"
+          description="Long distance, intercultural couple dynamics, marriage abroad, communication patterns."
+        />
+        <SpecialtyCard
+          icon="sparkles"
+          title="Children & Adolescents"
+          description="Child-centred play therapy, school adjustment, exam anxiety, emotion-regulation skills."
+        />
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/en/hizmetler" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+          See All Services
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">The First Step Is Often the Hardest</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">Let's make it easier.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">1</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">Write to me</h3>
+          <p class="font-sans text-sm text-gray-600">Send a short message via WhatsApp or e-mail.</p>
+        </div>
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">2</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">We meet</h3>
+          <p class="font-sans text-sm text-gray-600">In a brief intake call we clarify what you need.</p>
+        </div>
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">3</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">We work together</h3>
+          <p class="font-sans text-sm text-gray-600">Regular sessions, evidence-based methods.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram / Reels showcase -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">On Instagram: Mental Health in Short Videos</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Every week I share short bilingual videos on migration, belonging, anxiety and relationships.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {reels.map((reel) => (
+          <div class="bg-white rounded-xl p-5" data-reveal>
+            <span class="block font-sans text-xs font-bold uppercase tracking-wider text-accent mb-1">{reel.tag}</span>
+            <span class="font-serif text-lg font-semibold text-gray-800">{reel.name}</span>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+          Follow on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emotion Detectives -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-secondary rounded-2xl p-10 md:p-14 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-10 items-center" data-reveal>
+        <div>
+          <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider rounded-full px-4 py-1 mb-4">Coming soon</span>
+          <h2 class="font-serif text-3xl font-bold text-primary mb-4">Emotion Detectives — Emotional Education for Kids</h2>
+          <p class="font-sans text-gray-600 leading-relaxed">
+            I'm creating Turkish animated episodes for ages 4–6, grounded in social-emotional learning (SEL).
+            Each episode focuses on one emotion, teaching children to recognise and regulate their feelings
+            through small, memorable strategies.
+          </p>
+        </div>
+        <div class="aspect-square rounded-xl bg-primary/10 flex items-center justify-center">
+          <span class="font-serif text-xl text-primary text-center px-4">Emotion<br />Detectives</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog preview -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Latest From the Blog</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Writing on psychology, mental health and personal growth.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <article class="bg-white rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
+            <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <span class="font-serif text-4xl text-primary/40">📝</span>
+            </div>
+            <div class="p-6">
+              <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold px-3 py-1 rounded-full mb-3">{post.data.category}</span>
+              <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">{post.data.title}</h3>
+              <a href={`/en/blog/${post.id}`} class="text-primary font-sans text-sm font-semibold hover:text-primary/80 transition-colors">Read More →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/en/blog" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+          See All Posts
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

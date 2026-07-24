@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FaqItem from '../components/FaqItem.astro';
+
+const services = [
+  {
+    title: 'Göç Psikolojisi & Kültürel Uyum',
+    body: 'Kültür şoku, aidiyet krizi, kimlik, iki eve de ait olamamak, akülturasyon stresi üzerine çalışıyoruz. Yurtdışında yaşayan Türkler ve kültürlerarası danışanlar için özel bir alan.',
+    bullets: ['50 dakikalık seanslar', 'Haftada bir veya iki haftada bir', 'CBT, EMDR ve çözüm odaklı yaklaşımlar'],
+  },
+  {
+    title: 'Kaygı & Depresyon',
+    body: 'Belirtileri tanımak, kanıta dayalı baş etme becerileri geliştirmek ve CBT/EMDR ile yapılandırılmış bir süreç yürütmek üzerine çalışıyoruz.',
+    bullets: ['50 dakikalık seanslar', 'Bireysel çalışma', 'CBT, EMDR ve çözüm odaklı yaklaşımlar'],
+  },
+  {
+    title: 'Çift & İlişki',
+    body: 'Uzak mesafe ilişkiler, kültürlerarası çift dinamikleri, gurbette evlilik ve iletişim örüntüleri üzerine çift terapisi.',
+    bullets: ['75 dakikalık seanslar', 'Çift olarak katılım', 'Gottman yöntemi ve duygu odaklı terapi'],
+  },
+  {
+    title: 'Çocuk & Ergen',
+    body: 'Çocuk merkezli oyun terapisi ile okul uyumu, sınav kaygısı ve duygu düzenleme becerileri üzerine çalışıyoruz; süreç boyunca düzenli ebeveyn görüşmeleri yapılır.',
+    bullets: ['45 dakikalık seanslar', 'Oyun terapisi temelli', 'Ebeveyn görüşmeleriyle desteklenir'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'Online terapi gerçekten işe yarıyor mu?',
+    answer: 'Evet. Araştırmalar, görüntülü görüşmeyle yapılan terapinin birçok alanda yüz yüze terapiyle benzer etkinlikte olduğunu gösteriyor. Sessiz, kesintisiz bir alan ve stabil internet bağlantısı yeterli.',
+  },
+  {
+    question: 'Seanslar hangi dilde yapılıyor?',
+    answer: 'Türkçe ve İngilizce. Kültürlerarası çiftlerde iki dili birlikte de kullanabiliyoruz.',
+  },
+  {
+    question: 'Gizlilik nasıl korunuyor?',
+    answer: 'Tüm görüşmeler meslek etiği ilkeleri çerçevesinde gizlidir. Danışan bilgileri hiçbir şekilde üçüncü kişilerle paylaşılmaz; yasal zorunluluk halleri ilk görüşmede açıkça anlatılır.',
+  },
+  {
+    question: 'Çocuğum için nasıl bir süreç izleniyor?',
+    answer: "Önce ebeveynlerle ayrıntılı bir görüşme yaparız. Çocuklarla çalışmada oyun terapisi temelli, çocuğun hızına saygılı bir yol izlerim; süreç boyunca ebeveyn görüşmeleri devam eder.",
+  },
+];
+---
+
+<BaseLayout title="Hizmetler" description="Büşra Uğurcan Hanözü'nün terapi alanları: göç psikolojisi, kaygı & depresyon, çift & ilişki, çocuk & ergen.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary to-primary/90 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Hizmetlerim</h1>
+      <p class="font-sans text-lg text-white/90 max-w-2xl mx-auto">
+        Size özel terapi yaklaşımlarıyla, ihtiyaçlarınıza uygun profesyonel destek sunuyorum.
+      </p>
+    </div>
+  </section>
+
+  <!-- Hizmet Detayları -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map((service) => (
+          <div class="bg-secondary rounded-xl p-8 hover:shadow-md transition-shadow" data-reveal>
+            <h2 class="font-serif text-2xl font-bold text-primary mb-4">{service.title}</h2>
+            <p class="font-sans text-gray-600 leading-relaxed mb-4">{service.body}</p>
+            <ul class="font-sans text-sm text-gray-600 space-y-2">
+              {service.bullets.map((bullet) => <li>• {bullet}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SSS -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10" data-reveal>
+        <h2 class="font-serif text-3xl font-bold text-primary mb-4">Sık Sorulanlar</h2>
+      </div>
+      <div>
+        {faqs.map((faq) => <FaqItem question={faq.question} answer={faq.answer} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-reveal>
+      <h2 class="font-serif text-3xl font-bold text-primary mb-4">Hangi Hizmetin Size Uygun Olduğundan Emin Değil Misiniz?</h2>
+      <p class="font-sans text-gray-600 mb-8 max-w-2xl mx-auto">
+        Kısa bir mesajla ulaşın, size en uygun terapi türünü birlikte belirleyelim.
+      </p>
+      <a href="/randevu" class="inline-block bg-accent hover:bg-accent/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+        Randevu Al
+      </a>
+    </div>
+  </section>
+</BaseLayout>

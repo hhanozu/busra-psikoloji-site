@@ -1,0 +1,90 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Menu, X } from '@lucide/astro';
+import { getDictionary } from '../i18n';
+
+const locale = Astro.currentLocale ?? 'tr';
+const otherLocale = locale === 'tr' ? 'en' : 'tr';
+const t = getDictionary(locale);
+
+const path = (p: string) => getRelativeLocaleUrl(locale, p);
+
+// Aynı sayfanın diğer dildeki karşılığına geç (basit yol eşleştirmesi).
+const currentPath = Astro.url.pathname
+  .replace(/^\/en/, '')
+  .replace(/\/$/, '') || '/';
+const langSwitchHref = getRelativeLocaleUrl(otherLocale, currentPath);
+
+const links = [
+  { href: path('/'), label: t.nav.home },
+  { href: path('/hakkimda'), label: t.nav.about },
+  { href: path('/hizmetler'), label: t.nav.services },
+  { href: path('/portfolyo'), label: t.nav.portfolio },
+  { href: path('/blog'), label: t.nav.blog },
+  { href: path('/randevu'), label: t.nav.booking },
+  { href: path('/iletisim'), label: t.nav.contact },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href={path('/')} class="font-serif text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
+        Büşra Uğurcan
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        {links.map((link) => (
+          <a href={link.href} class="font-sans text-sm font-medium text-gray-700 hover:text-primary transition-colors">{link.label}</a>
+        ))}
+        <a
+          href={langSwitchHref}
+          class="font-sans text-xs font-semibold text-primary border border-primary/30 rounded-full px-3 py-1 hover:bg-primary/10 transition-colors"
+        >
+          {t.nav.langSwitch}
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="menu-toggle" class="md:hidden p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none" aria-label="Menüyü aç/kapa">
+        <Menu id="menu-icon-open" class="h-6 w-6" />
+        <X id="menu-icon-close" class="h-6 w-6 hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+    <div class="px-4 py-4 space-y-3">
+      {links.map((link) => (
+        <a href={link.href} class="block font-sans text-base font-medium text-gray-700 hover:text-primary transition-colors">{link.label}</a>
+      ))}
+      <a href={langSwitchHref} class="block font-sans text-base font-semibold text-primary">{t.nav.langSwitch}</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      iconOpen?.classList.toggle('hidden');
+      iconClose?.classList.toggle('hidden');
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      });
+    });
+  }
+</script>

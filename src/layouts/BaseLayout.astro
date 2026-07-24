@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_URL } from '../lib/site-config';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const locale = Astro.currentLocale ?? 'tr';
+const canonicalPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description || 'Uzm. Kl. Psk. Büşra Uğurcan Hanözü — Kuveyt ve İstanbul\'da online ve yüz yüze terapi.'} />
+    <link rel="canonical" href={new URL(canonicalPath, SITE_URL).toString()} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <title>{title} | Büşra Uğurcan Hanözü</title>
+  </head>
+  <body class="font-sans bg-secondary text-gray-800 antialiased">
+    <Nav />
+    <main class="pt-16">
+      <slot />
+    </main>
+    <Footer />
+    <script src="../scripts/scroll-reveal.ts"></script>
+  </body>
+</html>

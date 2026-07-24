@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="Writing on psychology, mental health and personal growth.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary to-primary/90 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Blog</h1>
+      <p class="font-sans text-lg text-white/90 max-w-2xl mx-auto">
+        Writing on psychology, mental health and personal growth.
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog list -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="font-sans text-xs text-gray-500 text-center mb-10 max-w-xl mx-auto">
+        Posts are currently published in Turkish only. English translations are coming soon.
+      </p>
+      {posts.length === 0 ? (
+        <p class="font-sans text-gray-600 text-center">New posts will be here soon.</p>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <article class="bg-secondary rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
+              <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span class="font-serif text-4xl text-primary/40">📝</span>
+              </div>
+              <div class="p-6">
+                <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold px-3 py-1 rounded-full mb-3">{post.data.category}</span>
+                <h2 class="font-serif text-lg font-bold text-gray-800 mb-2">{post.data.title}</h2>
+                <div class="flex items-center justify-between">
+                  <time datetime={post.data.date.toISOString()} class="font-sans text-xs text-gray-500">
+                    {post.data.date.toLocaleDateString('en-GB')}
+                  </time>
+                  <a href={`/en/blog/${post.id}`} class="text-primary font-sans text-sm font-semibold hover:text-primary/80 transition-colors">Read More →</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

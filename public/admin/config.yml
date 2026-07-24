@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+site_url: https://www.busraugurcan.com
+display_url: https://www.busraugurcan.com
+logo_url: /images/uploads/logo.png
+locale: 'tr'
+collections:
+  - name: "pages"
+    label: "Sayfalar"
+    folder: "src/pages"
+    create: true
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Yayın Tarihi", name: "date", widget: "datetime"}
+      - {label: "İçerik", name: "body", widget: "markdown"}
+    extension: "md"
+  - name: "blog"
+    label: "Blog Yazıları"
+    folder: "src/content/blog"
+    create: true
+    fields:
+      - {label: "Başlık", name: "title", widget: "string"}
+      - {label: "Kapak Görseli", name: "image", widget: "image", required: false}
+      - {label: "Kategori", name: "category", widget: "select", options: ["Genel", "Akademik"]}
+      - {label: "Yayın Tarihi", name: "date", widget: "datetime"}
+      - {label: "İçerik", name: "body", widget: "markdown"}
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+  - name: "portfolio"
+    label: "Portfolyo Çalışmaları"
+    folder: "src/content/portfolio"
+    create: true
+    fields:
+      - {label: "Çalışma Adı", name: "title", widget: "string"}
+      - {label: "Kısa Açıklama", name: "excerpt", widget: "text"}
+      - {label: "Görsel", name: "image", widget: "image"}
+      - {label: "Tarih", name: "date", widget: "datetime"}
+      - {label: "Detaylı İçerik", name: "body", widget: "markdown"}
+    slug: "{{slug}}"

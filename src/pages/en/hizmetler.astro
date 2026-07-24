@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FaqItem from '../../components/FaqItem.astro';
+
+const services = [
+  {
+    title: 'Migration Psychology & Cultural Adjustment',
+    body: 'We work on culture shock, belonging, identity, feeling at home in neither place, and acculturation stress — a dedicated space for Turks living abroad and intercultural clients.',
+    bullets: ['50-minute sessions', 'Weekly or bi-weekly', 'CBT, EMDR and solution-focused approaches'],
+  },
+  {
+    title: 'Anxiety & Depression',
+    body: 'Recognising symptoms, building evidence-based coping skills, and structured work with CBT and EMDR.',
+    bullets: ['50-minute sessions', 'Individual work', 'CBT, EMDR and solution-focused approaches'],
+  },
+  {
+    title: 'Couples & Relationships',
+    body: 'Long-distance relationships, intercultural couple dynamics, marriage abroad, and communication patterns.',
+    bullets: ['75-minute sessions', 'Joint attendance', 'Gottman Method and emotion-focused therapy'],
+  },
+  {
+    title: 'Children & Adolescents',
+    body: 'Child-centred play therapy addressing school adjustment, exam anxiety, and emotion-regulation skills, with ongoing parent check-ins throughout.',
+    bullets: ['45-minute sessions', 'Play-therapy based', 'Supported by parent sessions'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'Does online therapy really work?',
+    answer: 'Yes. Research shows video-based therapy is comparably effective to in-person therapy for many concerns. A quiet, private space and a stable connection are all you need.',
+  },
+  {
+    question: 'Which languages do you work in?',
+    answer: 'Turkish and English. With intercultural couples we can also mix both languages in session.',
+  },
+  {
+    question: 'How is confidentiality protected?',
+    answer: 'All sessions are confidential under professional ethics. Client information is never shared with third parties; legal exceptions are explained clearly in our first meeting.',
+  },
+  {
+    question: 'What does the process look like for my child?',
+    answer: "We start with a detailed parent interview. With children I follow a play-therapy-based approach that respects the child's pace, with ongoing parent check-ins throughout.",
+  },
+];
+---
+
+<BaseLayout title="Services" description="Büşra Uğurcan Hanözü's areas of practice: migration psychology, anxiety & depression, couples & relationships, children & adolescents.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary to-primary/90 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Services</h1>
+      <p class="font-sans text-lg text-white/90 max-w-2xl mx-auto">
+        Tailored therapy approaches that meet your needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- Service details -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map((service) => (
+          <div class="bg-secondary rounded-xl p-8 hover:shadow-md transition-shadow" data-reveal>
+            <h2 class="font-serif text-2xl font-bold text-primary mb-4">{service.title}</h2>
+            <p class="font-sans text-gray-600 leading-relaxed mb-4">{service.body}</p>
+            <ul class="font-sans text-sm text-gray-600 space-y-2">
+              {service.bullets.map((bullet) => <li>• {bullet}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10" data-reveal>
+        <h2 class="font-serif text-3xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
+      </div>
+      <div>
+        {faqs.map((faq) => <FaqItem question={faq.question} answer={faq.answer} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-reveal>
+      <h2 class="font-serif text-3xl font-bold text-primary mb-4">Not Sure Which Service Fits?</h2>
+      <p class="font-sans text-gray-600 mb-8 max-w-2xl mx-auto">
+        Reach out with a short message and we'll figure out the right approach together.
+      </p>
+      <a href="/en/randevu" class="inline-block bg-accent hover:bg-accent/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+        Book a Session
+      </a>
+    </div>
+  </section>
+</BaseLayout>

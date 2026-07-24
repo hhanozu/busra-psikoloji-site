@@ -1,11 +1,240 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import SpecialtyCard from '../components/SpecialtyCard.astro';
+import { getCollection } from 'astro:content';
+import { INSTAGRAM_URL } from '../lib/site-config';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const reels = [
+  { tag: 'Göç Psikolojisi', name: 'İki eve de ait olamamak' },
+  { tag: 'Yalnızlık & Aidiyet', name: 'Kalabalıkta yalnızlık' },
+  { tag: 'Kaygı', name: 'Kaygı geldiğinde topraklan' },
+  { tag: 'Çift & İlişki', name: 'Kavga değil, karşılanmamış ihtiyaç' },
+  { tag: 'Göç Psikolojisi', name: 'Gurbetin adı konmamış yası' },
+  { tag: 'Kaygı', name: 'Nefes, sinir sistemini yavaşlatır' },
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Ana Sayfa" description="Uzm. Kl. Psk. Büşra Uğurcan Hanözü — Kuveyt ve İstanbul'da Türkçe ve İngilizce online & yüz yüze terapi.">
+  <!-- Hero Bölümü -->
+  <section class="relative bg-gradient-to-br from-primary to-primary/90 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <div class="max-w-3xl" data-reveal>
+        <p class="font-sans text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
+          Uzm. Kl. Psk. · Kuveyt &amp; İstanbul · Online
+        </p>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 italic">
+          Ne buraya tam ait hissediyorsun, ne de geride bıraktığın yere…
+          <span class="block not-italic text-accent mt-3 text-3xl md:text-4xl">Bu duygunun bir adı var.</span>
+        </h1>
+        <p class="font-sans text-lg md:text-xl text-white/90 leading-relaxed mb-8">
+          Yurtdışında yaşayan Türkler, Kuveyt'teki Türk topluluğu ve İngilizce konuşan danışanlar için online ve
+          yüz yüze terapi. Bilimsel, yargılamayan, sıcak bir alan.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/randevu" class="inline-block bg-accent hover:bg-accent/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors shadow-lg">
+            Randevu Al
+          </a>
+          <a href="/hizmetler" class="inline-block border border-white/40 hover:bg-white/10 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+            Nasıl çalışıyorum?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Güven Şeridi -->
+  <div class="bg-secondary border-y border-primary/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm font-sans text-gray-600">
+      <span>— 10+ yıl klinik deneyim</span>
+      <span>— CBT · EMDR · Oyun Terapisi</span>
+      <span>— Türkçe + İngilizce</span>
+      <span>— Online &amp; yüz yüze</span>
+    </div>
+  </div>
+
+  <!-- Hakkımda Özeti -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div data-reveal>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-6">Merhaba, Ben Büşra</h2>
+          <p class="font-sans text-gray-600 leading-relaxed mb-4">
+            Klinik psikoloğum. 2018'den bu yana Kuveyt ve İstanbul'da özel pratiğimde çocuk, ergen ve yetişkinlerle
+            çalışıyorum. Her danışanımın benzersiz hikayesine saygı duyarak güvenli bir alan sunuyorum.
+          </p>
+          <p class="font-sans text-gray-600 leading-relaxed mb-6">
+            Göç psikolojisi, kaygı bozuklukları, depresyon ve ilişki sorunları alanlarında uzmanlaşmış olup,
+            online ve yüz yüze danışmanlık hizmeti vermekteyim.
+          </p>
+          <a href="/hakkimda" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+            Daha Fazla Bilgi
+            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="bg-secondary rounded-2xl p-8 text-center" data-reveal>
+          <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" class="w-48 h-48 mx-auto mb-4" />
+          <p class="font-sans text-gray-500 italic">"İyileşme, kendinize gösterdiğiniz şefkatle başlar."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Uzmanlık Alanları -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Hangi Konularda Birlikte Çalışıyoruz?</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Size özel terapi yaklaşımlarıyla, ihtiyaçlarınıza uygun destek sunuyorum.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <SpecialtyCard
+          icon="globe"
+          title="Göç Psikolojisi & Kültürel Uyum"
+          description="Kültür şoku, aidiyet krizi, kimlik, iki eve de ait olamamak, akülturasyon stresi."
+        />
+        <SpecialtyCard
+          icon="moon"
+          title="Kaygı & Depresyon"
+          description="Belirtileri tanımak, kanıta dayalı baş etme becerileri, CBT ve EMDR ile yapılandırılmış çalışma."
+        />
+        <SpecialtyCard
+          icon="heart"
+          title="Çift & İlişki"
+          description="Uzak mesafe, kültürlerarası çift dinamikleri, gurbette evlilik, iletişim örüntüleri."
+        />
+        <SpecialtyCard
+          icon="sparkles"
+          title="Çocuk & Ergen"
+          description="Çocuk merkezli oyun terapisi, okul uyumu, sınav kaygısı, duygu düzenleme becerileri."
+        />
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/hizmetler" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+          Tüm Hizmetleri Gör
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Süreç -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">İlk Adım Çoğu Zaman En Zoru</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">Kolaylaştıralım.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">1</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">Yazın</h3>
+          <p class="font-sans text-sm text-gray-600">WhatsApp ya da e-posta ile kısaca kendinizden bahsedin.</p>
+        </div>
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">2</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">Tanışalım</h3>
+          <p class="font-sans text-sm text-gray-600">Kısa bir ön görüşmede ihtiyacınızı birlikte netleştirelim.</p>
+        </div>
+        <div class="text-center" data-reveal>
+          <div class="font-serif text-4xl text-primary mb-3">3</div>
+          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">Birlikte Çalışalım</h3>
+          <p class="font-sans text-sm text-gray-600">Düzenli seanslarla, kanıta dayalı yöntemlerle ilerleyelim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram / Reels Vitrini -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Instagram'da: Kısa Videolarla Ruh Sağlığı</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Her hafta Türkçe ve İngilizce kısa videolar paylaşıyorum — göç, aidiyet, kaygı ve ilişkiler üzerine.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {reels.map((reel) => (
+          <div class="bg-white rounded-xl p-5" data-reveal>
+            <span class="block font-sans text-xs font-bold uppercase tracking-wider text-accent mb-1">{reel.tag}</span>
+            <span class="font-serif text-lg font-semibold text-gray-800">{reel.name}</span>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+          Instagram'da Takip Edin
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Duygu Dedektifleri -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-secondary rounded-2xl p-10 md:p-14 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-10 items-center" data-reveal>
+        <div>
+          <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider rounded-full px-4 py-1 mb-4">Yakında</span>
+          <h2 class="font-serif text-3xl font-bold text-primary mb-4">Duygu Dedektifleri — Çocuklar İçin Duygu Eğitimi</h2>
+          <p class="font-sans text-gray-600 leading-relaxed">
+            4–6 yaş çocuklar için, sosyal-duygusal gelişim (SEL) temelli Türkçe animasyon bölümleri hazırlıyorum.
+            Her bölüm tek bir duyguya odaklanıyor; çocuklara duygularını tanımayı ve düzenlemeyi küçük, akılda
+            kalıcı stratejilerle öğretiyor.
+          </p>
+        </div>
+        <div class="aspect-square rounded-xl bg-primary/10 flex items-center justify-center">
+          <span class="font-serif text-xl text-primary text-center px-4">Duygu<br />Dedektifleri</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Önizleme -->
+  <section class="py-20 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12" data-reveal>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Son Blog Yazıları</h2>
+        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
+          Psikoloji, ruh sağlığı ve kişisel gelişim üzerine güncel yazılar.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <article class="bg-white rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
+            <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+              <span class="font-serif text-4xl text-primary/40">📝</span>
+            </div>
+            <div class="p-6">
+              <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold px-3 py-1 rounded-full mb-3">{post.data.category}</span>
+              <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">{post.data.title}</h3>
+              <a href={`/blog/${post.id}`} class="text-primary font-sans text-sm font-semibold hover:text-primary/80 transition-colors">Devamını Oku →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/blog" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+          Tüm Yazıları Gör
+          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

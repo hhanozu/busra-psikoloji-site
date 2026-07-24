@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const works = (await getCollection('portfolio')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout title="Portfolyo" description="Akademik çalışmalar ve vaka örnekleri.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary to-primary/90 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Portfolyo</h1>
+      <p class="font-sans text-lg text-white/90 max-w-2xl mx-auto">
+        Akademik çalışmalar, projeler ve profesyonel deneyimler.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portfolyo Grid -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {works.length === 0 ? (
+        <p class="font-sans text-gray-600 text-center">Yakında yeni çalışmalar burada olacak.</p>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {works.map((work) => (
+            <a href={`/portfolyo/${work.id}`} class="group block bg-secondary rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
+              <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span class="font-serif text-4xl text-primary/40 group-hover:scale-110 transition-transform">📊</span>
+              </div>
+              <div class="p-6">
+                <h2 class="font-serif text-lg font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors">{work.data.title}</h2>
+                <p class="font-sans text-sm text-gray-600 leading-relaxed">{work.data.excerpt}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CALENDLY_URL, CONTACT } from '../lib/site-config';
+---
+
+<BaseLayout title="Randevu" description="Büşra Uğurcan Hanözü ile randevu oluşturun.">
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-primary to-primary/90 text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="font-serif text-4xl md:text-5xl font-bold mb-6">Randevu Al</h1>
+      <p class="font-sans text-lg text-white/90 max-w-2xl mx-auto">
+        Size uygun bir zaman diliminde randevunuzu hemen oluşturabilirsiniz.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calendly Embed -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-secondary rounded-xl p-8" data-reveal>
+        <h2 class="font-serif text-2xl font-bold text-primary mb-6 text-center">Takviminizi Seçin</h2>
+        <div class="calendly-inline-widget" data-url={CALENDLY_URL} style="min-width:320px;height:700px;"></div>
+        <p class="font-sans text-sm text-gray-600 text-center mt-6">
+          Takvim sizin için uygun değilse doğrudan <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener" class="text-primary font-semibold hover:underline">WhatsApp</a> üzerinden de yazabilirsiniz.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Calendly widget script'i head'e ekleniyor
+  (function () {
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+    head.appendChild(link);
+    var script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    head.appendChild(script);
+  })();
+</script>

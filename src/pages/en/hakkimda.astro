@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PhotoPlaceholder from '../../components/PhotoPlaceholder.astro';
+---
+
+<BaseLayout title="About" description="Büşra Uğurcan Hanözü's education, experience and clinical approach.">
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-10 items-start mb-12" data-reveal>
+        <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" labelTr="Fotoğraf eklenecek" labelEn="Photo coming soon" class="aspect-square" />
+        <div>
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-3">Hello, I'm Büşra.</h1>
+          <p class="font-sans text-lg text-gray-600">Clinical Psychologist Büşra Uğurcan Hanözü · Kuwait &amp; Istanbul · Online</p>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="font-sans text-gray-700 leading-relaxed mb-6" data-reveal>
+          I'm a clinical psychologist. Since 2018 I have worked with children, adolescents and adults in my
+          private practice in Kuwait and Istanbul. I use cognitive behavioural therapy (CBT), EMDR and
+          client-centred approaches for anxiety, depression, grief, chronic stress and migration psychology.
+        </p>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Education</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• Ph.D. candidate — Guidance &amp; Counseling, Bahçeşehir University</li>
+          <li>• M.Sc. — Clinical Psychology, Demiroğlu Bilim University</li>
+          <li>• B.A. — Psychology, Bahçeşehir University (full scholarship)</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Experience</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• 3 years as a school psychologist at Bahçeşehir College — individual and group work with 90+ students</li>
+          <li>• Neuropsychology, Cerrahpaşa Medical Faculty</li>
+          <li>• Private practice in Kuwait and Istanbul since 2018</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Certifications</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• EMDR I &amp; II (2023)</li>
+          <li>• Child-Centered Play Therapy (2020)</li>
+          <li>• Dissociative Identity Disorder — Diagnosis &amp; Treatment, Levels 1 &amp; 2 (2025)</li>
+          <li>• CBT Supervision · WISC-IV · Family Counseling (2012–2018)</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>My Approach</h2>
+        <p class="font-sans text-gray-700 leading-relaxed mb-6" data-reveal>
+          I believe every client is unique, and I shape the therapeutic process around each person's needs.
+          I know what living between two cultures feels like — not fully belonging here, not fully belonging
+          to the place you left — not only from the literature, but from my own life.
+        </p>
+
+        <p class="font-sans text-gray-700 leading-relaxed" data-reveal>
+          I run sessions both in person and online, in Turkish and English. For appointments and further
+          information, you can reach me via the <a href="/en/iletisim" class="text-primary font-semibold hover:underline">contact page</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

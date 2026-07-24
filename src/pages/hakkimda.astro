@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+---
+
+<BaseLayout title="Hakkımda" description="Uzm. Kl. Psk. Büşra Uğurcan Hanözü'nün eğitimi, deneyimi ve çalışma yaklaşımı.">
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-10 items-start mb-12" data-reveal>
+        <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" class="aspect-square" />
+        <div>
+          <h1 class="font-serif text-4xl md:text-5xl font-bold text-primary mb-3">Merhaba, ben Büşra.</h1>
+          <p class="font-sans text-lg text-gray-600">Uzm. Kl. Psk. Büşra Uğurcan Hanözü · Kuveyt &amp; İstanbul · Online</p>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="font-sans text-gray-700 leading-relaxed mb-6" data-reveal>
+          Klinik psikoloğum. 2018'den bu yana Kuveyt ve İstanbul'da özel pratiğimde çocuk, ergen ve yetişkinlerle
+          çalışıyorum. Kaygı, depresyon, yas, kronik stres ve göç psikolojisi alanlarında bilişsel davranışçı terapi
+          (CBT), EMDR ve danışan-merkezli yaklaşımlar kullanıyorum.
+        </p>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Eğitim</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• Doktora (devam ediyor) — Psikolojik Danışmanlık ve Rehberlik, Bahçeşehir Üniversitesi</li>
+          <li>• Yüksek Lisans — Klinik Psikoloji, Demiroğlu Bilim Üniversitesi</li>
+          <li>• Lisans — Psikoloji, Bahçeşehir Üniversitesi (%100 burs)</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Deneyim</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• 3 yıl okul psikoloğu, Bahçeşehir Koleji — 90'dan fazla öğrenciyle bireysel ve grup çalışması</li>
+          <li>• Nöropsikoloji, Cerrahpaşa Tıp Fakültesi</li>
+          <li>• 2018'den bu yana Kuveyt ve İstanbul'da özel pratik</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Sertifikalar</h2>
+        <ul class="font-sans text-gray-700 space-y-2 mb-6" data-reveal>
+          <li>• EMDR I &amp; II (2023)</li>
+          <li>• Çocuk Merkezli Oyun Terapisi (2020)</li>
+          <li>• Disosiyatif Kimlik Bozukluğu — Tanı ve Tedavi, 1. &amp; 2. Düzey (2025)</li>
+          <li>• BDT Süpervizyonu · WISC-IV · Aile Danışmanlığı (2012–2018)</li>
+        </ul>
+
+        <h2 class="font-serif text-2xl font-bold text-primary mt-10 mb-4" data-reveal>Yaklaşımım</h2>
+        <p class="font-sans text-gray-700 leading-relaxed mb-6" data-reveal>
+          Her danışanın benzersiz olduğuna inanıyor, terapi sürecini bireyin ihtiyaçlarına göre şekillendiriyorum.
+          İki kültür arasında yaşamanın, ne buraya ne de geride bıraktığınız yere tam ait hissetmemenin nasıl bir
+          şey olduğunu yalnızca literatürden değil, kendi hayatımdan da biliyorum.
+        </p>
+
+        <p class="font-sans text-gray-700 leading-relaxed" data-reveal>
+          Seanslarımı hem yüz yüze hem de online olarak, Türkçe ve İngilizce yürütüyorum. Randevu ve detaylı bilgi
+          için <a href="/iletisim" class="text-primary font-semibold hover:underline">iletişim sayfasından</a> bana ulaşabilirsiniz.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
