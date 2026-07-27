@@ -1,6 +1,6 @@
 // Tek nokta değişim: gerçek varlıklar geldiğinde sadece burayı güncelle.
 
-export const CALENDLY_URL = 'https://calendly.com/busraugurcan';
+export const CALENDLY_URL = 'https://calendly.com/busraugurcan/30min';
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/pskbusraugurcan/';
 
