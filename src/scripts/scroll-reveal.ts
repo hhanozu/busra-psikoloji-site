@@ -3,8 +3,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function pauseAmbientVideos() {
+  document.querySelectorAll<HTMLVideoElement>('video[autoplay]').forEach((video) => {
+    video.pause();
+    video.removeAttribute('autoplay');
+  });
+}
+
 function initScrollReveal() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    pauseAmbientVideos();
     return;
   }
 

@@ -35,7 +35,20 @@ const stats = [
 <BaseLayout title="Ana Sayfa" description="Uzm. Kl. Psk. Büşra Uğurcan Hanözü — Kuveyt ve İstanbul'da Türkçe ve İngilizce online & yüz yüze terapi.">
   <!-- Hero Bölümü -->
   <section class="relative bg-secondary overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      poster="/images/hero-bg-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    >
+      <source src="/videos/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-secondary/80"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div data-reveal>
         <div class="flex items-center gap-3 mb-6">
           <span class="w-8 h-px bg-primary"></span>
