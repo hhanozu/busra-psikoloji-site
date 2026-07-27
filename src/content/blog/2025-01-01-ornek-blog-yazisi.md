@@ -2,7 +2,7 @@
 title: "Terapi Süreci Hakkında Bilmeniz Gerekenler"
 date: 2025-01-01
 category: "Genel"
-image: ""
+image: "/images/blog-terapi-sureci.jpg"
 ---
 
 Terapiye başlamak birçok kişi için cesaret gerektiren bir adımdır. İşte terapi süreci hakkında bilmeniz gerekenler...

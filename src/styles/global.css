@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #23615C;
-  --color-primary-soft: #3B7A73;
-  --color-accent: #B87B3E;
-  --color-accent-soft: #D9A86C;
-  --color-secondary: #F4F6F1;
-  --color-ink: #12211D;
-  --color-ink-soft: #1C332C;
-  --font-serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --font-sans: 'Figtree', -apple-system, 'Segoe UI', system-ui, sans-serif;
+  --color-primary: #5B7E62;
+  --color-primary-soft: #4A6B51;
+  --color-accent: #B87352;
+  --color-accent-soft: #C98F6F;
+  --color-secondary: #F8F5F0;
+  --color-ink: #1C1917;
+  --color-ink-soft: #2D2825;
+  --color-sage-light: #A3C4A8;
+  --color-sage-muted: #E8F0EA;
+  --color-warm-beige: #EDE8DF;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
 }
 
 :root {
@@ -18,21 +21,21 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-primary: #7FBDB4;
-  --color-primary-soft: #5FA79D;
-  --color-accent: #D9A86C;
-  --color-accent-soft: #B87B3E;
-  --color-secondary: #182421;
+  --color-primary: #A3C4A8;
+  --color-primary-soft: #8FB596;
+  --color-accent: #C98F6F;
+  --color-accent-soft: #B87352;
+  --color-secondary: #201C19;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --color-primary: #7FBDB4;
-    --color-primary-soft: #5FA79D;
-    --color-accent: #D9A86C;
-    --color-accent-soft: #B87B3E;
-    --color-secondary: #182421;
+    --color-primary: #A3C4A8;
+    --color-primary-soft: #8FB596;
+    --color-accent: #C98F6F;
+    --color-accent-soft: #B87352;
+    --color-secondary: #201C19;
   }
 }
 
@@ -40,5 +43,30 @@
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-14px) translateX(8px); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 13s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-slower {
+    animation: none;
   }
 }

@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PhotoPlaceholder from '../../components/PhotoPlaceholder.astro';
-import SpecialtyCard from '../../components/SpecialtyCard.astro';
 import { getCollection } from 'astro:content';
 import { INSTAGRAM_URL } from '../../lib/site-config';
+import { Globe, Moon, Heart, Sparkles } from '@lucide/astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -17,140 +17,183 @@ const reels = [
   { tag: 'Migration Psychology', name: 'The unnamed grief of living abroad' },
   { tag: 'Anxiety', name: 'Breath slows the nervous system' },
 ];
+
+const specialties = [
+  { icon: Globe, title: 'Migration & Cultural Adjustment', description: 'Culture shock, belonging, identity, feeling at home in neither place, acculturation stress.' },
+  { icon: Moon, title: 'Anxiety & Depression', description: 'Recognising symptoms, evidence-based coping skills, structured work with CBT and EMDR.' },
+  { icon: Heart, title: 'Couples & Relationships', description: 'Long distance, intercultural couple dynamics, marriage abroad, communication patterns.' },
+  { icon: Sparkles, title: 'Children & Adolescents', description: 'Child-centred play therapy, school adjustment, exam anxiety, emotion-regulation skills.' },
+];
+
+const stats = [
+  { number: '10+', label: 'Years of Practice' },
+  { number: '4', label: 'Areas of Focus' },
+  { number: '2', label: 'Languages' },
+];
 ---
 
 <BaseLayout title="Home" description="Büşra Uğurcan Hanözü, Clinical Psychologist — online & in-person therapy in Turkish and English, based in Kuwait & Istanbul.">
   <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-primary to-primary/90 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-      <div class="max-w-3xl" data-reveal>
-        <p class="font-sans text-xs font-bold uppercase tracking-widest text-white/70 mb-4">
-          Clinical Psychologist · Kuwait &amp; Istanbul · Online
-        </p>
-        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 italic">
-          You don't fully belong here, but not there anymore either…
-          <span class="block not-italic text-accent mt-3 text-3xl md:text-4xl">That feeling has a name.</span>
+  <section class="relative bg-secondary overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div data-reveal>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-primary"></span>
+          <span class="font-sans text-xs font-bold uppercase tracking-widest text-gray-500">Clinical Psychologist</span>
+        </div>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal leading-tight text-gray-900 mb-6 italic">
+          You don't fully belong here,<br class="hidden md:block" /> but not there anymore either…
+          <span class="block not-italic text-primary mt-3 text-2xl md:text-3xl">That feeling has a name.</span>
         </h1>
-        <p class="font-sans text-lg md:text-xl text-white/90 leading-relaxed mb-8">
+        <p class="font-sans text-lg text-gray-600 leading-relaxed max-w-md mb-10">
           Online and in-person therapy for Turks living abroad, the Turkish community in Kuwait, and
           English-speaking clients. Evidence-based, non-judgemental, warm.
         </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/en/randevu" class="inline-block bg-accent hover:bg-accent/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors shadow-lg">
-            Book a Session
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/en/randevu" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-soft text-white font-sans font-medium text-sm tracking-wide px-8 py-4 rounded-sm transition-colors">
+            Book Appointment
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-          <a href="/en/hizmetler" class="inline-block border border-white/40 hover:bg-white/10 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
-            How I work
+          <a href="/en/hakkimda" class="inline-flex items-center justify-center gap-2 border border-gray-900/20 hover:border-primary hover:text-primary text-gray-900 font-sans font-medium text-sm tracking-wide px-8 py-4 rounded-sm transition-colors">
+            Learn More
           </a>
+        </div>
+      </div>
+
+      <div class="relative flex justify-center lg:justify-end" data-reveal>
+        <div class="absolute -top-4 right-2 w-56 h-56 md:w-72 md:h-72 rounded-full bg-sage-light/25 animate-float-slow" aria-hidden="true"></div>
+        <div class="absolute bottom-2 left-4 w-16 h-16 rounded-full border border-primary/20 animate-float-slower" aria-hidden="true"></div>
+
+        <div class="relative z-10">
+          <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" labelTr="Fotoğraf eklenecek" labelEn="Photo coming soon" class="w-64 h-80 md:w-80 md:h-[26rem] rounded-sm object-cover" />
+          <div class="absolute -bottom-4 -left-8 bg-white shadow-lg pl-5 pr-6 py-4 border-l-2 border-primary">
+            <p class="font-serif text-3xl text-gray-900 leading-none">10+</p>
+            <p class="font-sans text-[0.65rem] uppercase tracking-widest text-gray-500 mt-1">Years of Practice</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust bar -->
-  <div class="bg-secondary border-y border-primary/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap gap-x-8 gap-y-2 text-sm font-sans text-gray-600">
-      <span>— 10+ years of clinical experience</span>
-      <span>— CBT · EMDR · Play Therapy</span>
-      <span>— Turkish + English</span>
-      <span>— Online &amp; in-person</span>
+  <!-- Stats -->
+  <div class="bg-warm-beige border-y border-gray-900/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-3">
+      {stats.map((stat, i) => (
+        <div class:list={["text-center px-4", { "border-r border-gray-900/10": i < stats.length - 1 }]}>
+          <p class="font-serif text-3xl md:text-4xl text-gray-900">{stat.number}</p>
+          <p class="font-sans text-[0.65rem] uppercase tracking-widest text-gray-500 mt-2">{stat.label}</p>
+        </div>
+      ))}
     </div>
   </div>
 
   <!-- About summary -->
-  <section class="py-20 bg-white">
+  <section class="py-24 md:py-32 bg-secondary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="relative flex justify-center" data-reveal>
+          <div class="absolute inset-0 max-w-sm mx-auto rounded-full" style="background: radial-gradient(circle, rgba(163,196,168,0.22) 0%, transparent 70%)" aria-hidden="true"></div>
+          <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" labelTr="Fotoğraf eklenecek" labelEn="Photo coming soon" class="relative z-10 w-64 h-64 md:w-80 md:h-80 rounded-full object-cover ring-8 ring-sage-light/15" />
+        </div>
         <div data-reveal>
-          <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-6">Hello, I'm Büşra</h2>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-px bg-primary"></span>
+            <span class="font-sans text-xs font-bold uppercase tracking-widest text-gray-500">About Me</span>
+          </div>
+          <blockquote class="font-serif italic text-xl md:text-2xl text-gray-900 leading-snug border-l-2 border-primary pl-5 mb-6">
+            "Healing begins with the compassion you show yourself."
+          </blockquote>
           <p class="font-sans text-gray-600 leading-relaxed mb-4">
             I'm a clinical psychologist. Since 2018 I've worked with children, adolescents and adults in my
             private practice in Kuwait and Istanbul, offering a safe space that honours each client's own story.
           </p>
-          <p class="font-sans text-gray-600 leading-relaxed mb-6">
+          <p class="font-sans text-gray-600 leading-relaxed mb-8">
             I specialise in migration psychology, anxiety disorders, depression and relationship issues,
             working with clients both online and in person.
           </p>
-          <a href="/en/hakkimda" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
-            Learn More
-            <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
+          <a href="/en/hakkimda" class="inline-flex items-center gap-2 text-primary font-sans font-medium text-sm border-b border-primary/30 hover:border-primary pb-0.5 transition-colors">
+            Read My Full Story
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-        </div>
-        <div class="bg-secondary rounded-2xl p-8 text-center" data-reveal>
-          <PhotoPlaceholder alt="Büşra Uğurcan Hanözü" labelTr="Fotoğraf eklenecek" labelEn="Photo coming soon" class="w-48 h-48 mx-auto mb-4" />
-          <p class="font-sans text-gray-500 italic">"Healing begins with the compassion you show yourself."</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Specialties -->
-  <section class="py-20 bg-secondary">
+  <!-- Ambient video -->
+  <section class="relative h-[60vh] min-h-[380px] overflow-hidden">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      poster="/images/calm-ocean-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+    >
+      <source src="/videos/calm-ocean.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-ink/55"></div>
+    <div class="relative z-10 h-full flex items-center justify-center text-center px-6" data-reveal>
+      <p class="font-serif italic text-2xl md:text-4xl text-white max-w-2xl leading-snug">
+        Calm isn't a destination — it's a practice we build together.
+      </p>
+    </div>
+  </section>
+
+  <!-- Specialties (dark) -->
+  <section class="py-24 md:py-32 bg-ink">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12" data-reveal>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">What We Can Work On Together</h2>
-        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
-          Tailored therapy approaches that meet you where you are.
-        </p>
+      <div class="flex items-center gap-3 mb-4" data-reveal>
+        <span class="w-8 h-px bg-primary"></span>
+        <span class="font-sans text-xs font-bold uppercase tracking-widest text-white/50">Services</span>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <SpecialtyCard
-          icon="globe"
-          title="Migration & Cultural Adjustment"
-          description="Culture shock, belonging, identity, feeling at home in neither place, acculturation stress."
-        />
-        <SpecialtyCard
-          icon="moon"
-          title="Anxiety & Depression"
-          description="Recognising symptoms, evidence-based coping skills, structured work with CBT and EMDR."
-        />
-        <SpecialtyCard
-          icon="heart"
-          title="Couples & Relationships"
-          description="Long distance, intercultural couple dynamics, marriage abroad, communication patterns."
-        />
-        <SpecialtyCard
-          icon="sparkles"
-          title="Children & Adolescents"
-          description="Child-centred play therapy, school adjustment, exam anxiety, emotion-regulation skills."
-        />
-      </div>
-
-      <div class="text-center mt-8">
-        <a href="/en/hizmetler" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
-          See All Services
-          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16" data-reveal>
+        <h2 class="font-serif text-3xl md:text-5xl text-white leading-tight">
+          How I Can<br /><span class="text-sage-light">Support You</span>
+        </h2>
+        <a href="/en/hizmetler" class="inline-flex items-center gap-2 text-sage-light font-sans font-medium text-sm border-b border-sage-light/30 hover:border-sage-light pb-0.5 transition-colors">
+          View All Services
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-ink-soft">
+        {specialties.map((s, i) => (
+          <div class="bg-ink hover:bg-ink-soft p-10 transition-colors group" data-reveal>
+            <div class="flex justify-between items-start mb-8">
+              <s.icon class="w-6 h-6 text-sage-light" />
+              <span class="font-serif text-4xl text-white/5 leading-none">{String(i + 1).padStart(2, '0')}</span>
+            </div>
+            <h3 class="font-serif text-xl text-white mb-3">{s.title}</h3>
+            <p class="font-sans text-sm text-white/50 leading-relaxed">{s.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- Process -->
-  <section class="py-20 bg-white">
+  <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12" data-reveal>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">The First Step Is Often the Hardest</h2>
+        <h2 class="font-serif text-3xl md:text-4xl text-gray-900 mb-4">The First Step Is Often the Hardest</h2>
         <p class="font-sans text-gray-600 max-w-2xl mx-auto">Let's make it easier.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center" data-reveal>
           <div class="font-serif text-4xl text-primary mb-3">1</div>
-          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">Write to me</h3>
+          <h3 class="font-serif text-lg text-gray-900 mb-2">Write to me</h3>
           <p class="font-sans text-sm text-gray-600">Send a short message via WhatsApp or e-mail.</p>
         </div>
         <div class="text-center" data-reveal>
           <div class="font-serif text-4xl text-primary mb-3">2</div>
-          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">We meet</h3>
+          <h3 class="font-serif text-lg text-gray-900 mb-2">We meet</h3>
           <p class="font-sans text-sm text-gray-600">In a brief intake call we clarify what you need.</p>
         </div>
         <div class="text-center" data-reveal>
           <div class="font-serif text-4xl text-primary mb-3">3</div>
-          <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">We work together</h3>
+          <h3 class="font-serif text-lg text-gray-900 mb-2">We work together</h3>
           <p class="font-sans text-sm text-gray-600">Regular sessions, evidence-based methods.</p>
         </div>
       </div>
@@ -158,24 +201,24 @@ const reels = [
   </section>
 
   <!-- Instagram / Reels showcase -->
-  <section class="py-20 bg-secondary">
+  <section class="py-24 bg-warm-beige">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12" data-reveal>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">On Instagram: Mental Health in Short Videos</h2>
+        <h2 class="font-serif text-3xl md:text-4xl text-gray-900 mb-4">On Instagram: Mental Health in Short Videos</h2>
         <p class="font-sans text-gray-600 max-w-2xl mx-auto">
           Every week I share short bilingual videos on migration, belonging, anxiety and relationships.
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {reels.map((reel) => (
-          <div class="bg-white rounded-xl p-5" data-reveal>
+          <div class="bg-white rounded-sm p-5" data-reveal>
             <span class="block font-sans text-xs font-bold uppercase tracking-wider text-accent mb-1">{reel.tag}</span>
-            <span class="font-serif text-lg font-semibold text-gray-800">{reel.name}</span>
+            <span class="font-serif text-lg text-gray-900">{reel.name}</span>
           </div>
         ))}
       </div>
       <div class="text-center mt-8">
-        <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary/90 text-white font-sans font-semibold px-8 py-4 rounded-lg transition-colors">
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener" class="inline-block bg-primary hover:bg-primary-soft text-white font-sans font-medium text-sm px-8 py-4 rounded-sm transition-colors">
           Follow on Instagram
         </a>
       </div>
@@ -183,19 +226,19 @@ const reels = [
   </section>
 
   <!-- Emotion Detectives -->
-  <section class="py-20 bg-white">
+  <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-secondary rounded-2xl p-10 md:p-14 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-10 items-center" data-reveal>
+      <div class="bg-secondary rounded-sm p-10 md:p-14 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-10 items-center" data-reveal>
         <div>
-          <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider rounded-full px-4 py-1 mb-4">Coming soon</span>
-          <h2 class="font-serif text-3xl font-bold text-primary mb-4">Emotion Detectives — Emotional Education for Kids</h2>
+          <span class="inline-block bg-accent text-white text-xs font-bold uppercase tracking-wider rounded-sm px-4 py-1 mb-4">Coming soon</span>
+          <h2 class="font-serif text-3xl text-gray-900 mb-4">Emotion Detectives — Emotional Education for Kids</h2>
           <p class="font-sans text-gray-600 leading-relaxed">
             I'm creating Turkish animated episodes for ages 4–6, grounded in social-emotional learning (SEL).
             Each episode focuses on one emotion, teaching children to recognise and regulate their feelings
             through small, memorable strategies.
           </p>
         </div>
-        <div class="aspect-square rounded-xl bg-primary/10 flex items-center justify-center">
+        <div class="aspect-square rounded-sm bg-primary/10 flex items-center justify-center">
           <span class="font-serif text-xl text-primary text-center px-4">Emotion<br />Detectives</span>
         </div>
       </div>
@@ -203,20 +246,20 @@ const reels = [
   </section>
 
   <!-- Blog preview (editorial style) -->
-  <section class="py-24 bg-white">
+  <section class="py-24 bg-secondary">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap items-end justify-between gap-4 mb-12" data-reveal>
         <div>
           <div class="flex items-center gap-3 mb-3">
-            <span class="w-8 h-px bg-gray-300"></span>
+            <span class="w-8 h-px bg-gray-400"></span>
             <span class="font-sans text-xs font-bold uppercase tracking-widest text-gray-500">Latest Writing</span>
           </div>
-          <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+          <h2 class="font-serif text-4xl md:text-5xl leading-tight">
             <span class="text-gray-900">Insights &amp;</span><br />
             <span class="text-primary">Reflections</span>
           </h2>
         </div>
-        <a href="/en/blog" class="inline-flex items-center gap-2 font-sans text-sm font-semibold text-primary hover:text-primary-soft transition-colors">
+        <a href="/en/blog" class="inline-flex items-center gap-2 font-sans text-sm font-medium text-primary hover:text-primary-soft transition-colors">
           View All Posts
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -224,20 +267,24 @@ const reels = [
         </a>
       </div>
 
-      <div class="divide-y divide-gray-200 border-t border-gray-200">
+      <div class="divide-y divide-gray-900/10 border-t border-gray-900/10">
         {posts.map((post) => (
           <a href={`/en/blog/${post.id}`} class="group flex items-center gap-6 py-8" data-reveal>
-            <div class="w-28 h-28 md:w-36 md:h-36 flex-shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center">
-              <span class="font-serif text-3xl text-primary/40">📝</span>
+            <div class="w-28 h-28 md:w-36 md:h-36 flex-shrink-0 rounded-sm overflow-hidden bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center">
+              {post.data.image ? (
+                <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover" loading="lazy" />
+              ) : (
+                <span class="font-serif text-3xl text-primary/40">📝</span>
+              )}
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3 mb-2">
-                <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post.data.category}</span>
+                <span class="inline-block bg-sage-muted text-primary text-xs font-sans font-semibold uppercase tracking-wide px-3 py-1 rounded-sm">{post.data.category}</span>
                 <time datetime={post.data.date.toISOString()} class="font-sans text-xs text-gray-500">
                   {post.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
               </div>
-              <h3 class="font-serif text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">{post.data.title}</h3>
+              <h3 class="font-serif text-xl text-gray-900 mb-1 group-hover:text-primary transition-colors">{post.data.title}</h3>
             </div>
             <svg class="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -249,15 +296,16 @@ const reels = [
   </section>
 
   <!-- CTA -->
-  <section class="bg-primary text-white py-24">
+  <section class="bg-primary text-white py-24 md:py-32">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-reveal>
-      <h2 class="font-serif text-3xl md:text-5xl font-bold leading-tight mb-6">
+      <p class="font-sans text-xs uppercase tracking-[0.2em] text-white/60 mb-6">Take the First Step</p>
+      <h2 class="font-serif text-3xl md:text-5xl leading-tight mb-6">
         Ready to Start<br />Your Journey?
       </h2>
-      <p class="font-sans text-white/85 leading-relaxed max-w-xl mx-auto mb-10">
+      <p class="font-sans text-white/80 leading-relaxed max-w-xl mx-auto mb-10">
         Your first session is an opportunity to share your story and explore whether we are the right fit — with no pressure or obligation.
       </p>
-      <a href="/en/randevu" class="inline-flex items-center gap-2 bg-white text-primary font-sans font-semibold px-8 py-4 rounded-lg hover:bg-white/90 transition-colors">
+      <a href="/en/randevu" class="inline-flex items-center gap-2 bg-white text-primary font-sans font-medium text-sm px-8 py-4 rounded-sm hover:bg-secondary transition-colors">
         Book Your First Session
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
