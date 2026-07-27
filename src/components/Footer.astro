@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { ExternalLink, Mail, Phone } from '@lucide/astro';
+import { Mail, MessageCircle } from '@lucide/astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
 import { getDictionary } from '../i18n';
 import { CONTACT, INSTAGRAM_URL } from '../lib/site-config';
 
@@ -8,59 +9,67 @@ const locale = Astro.currentLocale ?? 'tr';
 const t = getDictionary(locale);
 const path = (p: string) => getRelativeLocaleUrl(locale, p);
 const location = locale === 'en' ? CONTACT.location.en : CONTACT.location.tr;
+
+const socials = [
+  { href: INSTAGRAM_URL, label: 'Instagram', icon: InstagramIcon, external: true },
+  { href: CONTACT.whatsappUrl, label: 'WhatsApp', icon: MessageCircle, external: true },
+  { href: `mailto:${CONTACT.email}`, label: 'Email', icon: Mail, external: false },
+];
 ---
 
-<footer class="bg-primary text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Hakkında -->
+<footer class="bg-ink text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Marka -->
       <div>
-        <h3 class="font-serif text-xl font-bold mb-4">Büşra Uğurcan Hanözü</h3>
-        <p class="font-sans text-sm text-white/80 leading-relaxed">{t.footer.tagline}</p>
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-2 mt-4 text-sm font-sans text-white/80 hover:text-accent transition-colors"
-        >
-          Instagram <ExternalLink class="w-4 h-4" />
-        </a>
+        <h3 class="font-serif text-xl font-bold">Büşra Uğurcan</h3>
+        <p class="font-sans text-[0.65rem] font-semibold uppercase tracking-widest text-primary-soft mb-4">{t.footer.title}</p>
+        <p class="font-sans text-sm text-white/60 leading-relaxed max-w-xs">{t.footer.tagline}</p>
+        <div class="flex items-center gap-4 mt-5">
+          {socials.map((s) => (
+            <a
+              href={s.href}
+              target={s.external ? '_blank' : undefined}
+              rel={s.external ? 'noopener' : undefined}
+              aria-label={s.label}
+              class="text-white/70 hover:text-primary-soft transition-colors"
+            >
+              <s.icon class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
       </div>
 
-      <!-- Hızlı Linkler -->
+      <!-- Navigasyon -->
       <div>
-        <h3 class="font-serif text-xl font-bold mb-4">{t.footer.quickLinks}</h3>
-        <ul class="space-y-2">
-          <li><a href={path('/')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.home}</a></li>
-          <li><a href={path('/hakkimda')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.about}</a></li>
-          <li><a href={path('/hizmetler')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.services}</a></li>
-          <li><a href={path('/blog')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.blog}</a></li>
-          <li><a href={path('/randevu')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.booking}</a></li>
-          <li><a href={path('/iletisim')} class="font-sans text-sm text-white/80 hover:text-accent transition-colors">{t.nav.contact}</a></li>
+        <h3 class="font-sans text-xs font-bold uppercase tracking-widest text-white/50 mb-4">{t.footer.navTitle}</h3>
+        <ul class="space-y-3">
+          <li><a href={path('/hakkimda')} class="font-sans text-sm text-white/70 hover:text-primary-soft transition-colors">{t.nav.about}</a></li>
+          <li><a href={path('/hizmetler')} class="font-sans text-sm text-white/70 hover:text-primary-soft transition-colors">{t.nav.services}</a></li>
+          <li><a href={path('/portfolyo')} class="font-sans text-sm text-white/70 hover:text-primary-soft transition-colors">{t.nav.portfolio}</a></li>
+          <li><a href={path('/blog')} class="font-sans text-sm text-white/70 hover:text-primary-soft transition-colors">{t.nav.blog}</a></li>
+          <li><a href={path('/randevu')} class="font-sans text-sm text-white/70 hover:text-primary-soft transition-colors">{t.nav.bookCta}</a></li>
         </ul>
       </div>
 
       <!-- İletişim -->
       <div>
-        <h3 class="font-serif text-xl font-bold mb-4">{t.footer.contactTitle}</h3>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 font-sans text-sm text-white/80">
-            <Mail class="w-4 h-4 flex-shrink-0" />
-            <a href={`mailto:${CONTACT.email}`} class="hover:text-accent transition-colors">{CONTACT.email}</a>
-          </li>
-          <li class="flex items-center gap-2 font-sans text-sm text-white/80">
-            <Phone class="w-4 h-4 flex-shrink-0" />
-            <a href={CONTACT.phoneHref} class="hover:text-accent transition-colors">{CONTACT.phoneDisplay}</a>
-          </li>
-          <li class="font-sans text-sm text-white/80 pt-1">{location}</li>
+        <h3 class="font-sans text-xs font-bold uppercase tracking-widest text-white/50 mb-4">{t.footer.contactTitle}</h3>
+        <ul class="space-y-3 font-sans text-sm text-white/70">
+          <li>{location}</li>
+          <li><a href={`mailto:${CONTACT.email}`} class="hover:text-primary-soft transition-colors">{CONTACT.email}</a></li>
+          <li><a href={CONTACT.phoneHref} class="hover:text-primary-soft transition-colors">{CONTACT.phoneDisplay}</a></li>
         </ul>
+        <div class="border-t border-white/10 mt-5 pt-4">
+          <p class="font-sans text-sm text-white/50">{t.footer.hours}</p>
+        </div>
       </div>
     </div>
 
-    <div class="border-t border-white/20 mt-8 pt-8 text-center space-y-2">
-      <p class="font-sans text-xs text-white/60 max-w-2xl mx-auto">{t.footer.disclaimer}</p>
-      <p class="font-sans text-xs text-accent/90 max-w-2xl mx-auto">{t.footer.crisis}</p>
-      <p class="font-sans text-sm text-white/60 pt-2">
+    <div class="border-t border-white/10 mt-12 pt-8 text-center space-y-2">
+      <p class="font-sans text-xs text-white/40 max-w-2xl mx-auto">{t.footer.disclaimer}</p>
+      <p class="font-sans text-xs text-accent/80 max-w-2xl mx-auto">{t.footer.crisis}</p>
+      <p class="font-sans text-sm text-white/40 pt-2">
         &copy; 2026 Büşra Uğurcan Hanözü. {t.footer.rights}
       </p>
     </div>

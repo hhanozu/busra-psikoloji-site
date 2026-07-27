@@ -20,30 +20,32 @@ const posts = (await getCollection('blog')).sort(
 
   <!-- Blog list -->
   <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <p class="font-sans text-xs text-gray-500 text-center mb-10 max-w-xl mx-auto">
         Posts are currently published in Turkish only. English translations are coming soon.
       </p>
       {posts.length === 0 ? (
         <p class="font-sans text-gray-600 text-center">New posts will be here soon.</p>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="divide-y divide-gray-200 border-t border-gray-200">
           {posts.map((post) => (
-            <article class="bg-secondary rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
-              <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <span class="font-serif text-4xl text-primary/40">📝</span>
+            <a href={`/en/blog/${post.id}`} class="group flex items-center gap-6 py-8" data-reveal>
+              <div class="w-28 h-28 md:w-36 md:h-36 flex-shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center">
+                <span class="font-serif text-3xl text-primary/40">📝</span>
               </div>
-              <div class="p-6">
-                <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold px-3 py-1 rounded-full mb-3">{post.data.category}</span>
-                <h2 class="font-serif text-lg font-bold text-gray-800 mb-2">{post.data.title}</h2>
-                <div class="flex items-center justify-between">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post.data.category}</span>
                   <time datetime={post.data.date.toISOString()} class="font-sans text-xs text-gray-500">
-                    {post.data.date.toLocaleDateString('en-GB')}
+                    {post.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </time>
-                  <a href={`/en/blog/${post.id}`} class="text-primary font-sans text-sm font-semibold hover:text-primary/80 transition-colors">Read More →</a>
                 </div>
+                <h2 class="font-serif text-xl font-bold text-gray-900 group-hover:text-primary transition-colors">{post.data.title}</h2>
               </div>
-            </article>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           ))}
         </div>
       )}

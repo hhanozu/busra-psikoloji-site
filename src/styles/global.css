@@ -6,6 +6,8 @@
   --color-accent: #B87B3E;
   --color-accent-soft: #D9A86C;
   --color-secondary: #F4F6F1;
+  --color-ink: #12211D;
+  --color-ink-soft: #1C332C;
   --font-serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
   --font-sans: 'Figtree', -apple-system, 'Segoe UI', system-ui, sans-serif;
 }

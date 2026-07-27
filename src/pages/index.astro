@@ -202,39 +202,66 @@ const reels = [
     </div>
   </section>
 
-  <!-- Blog Önizleme -->
-  <section class="py-20 bg-secondary">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12" data-reveal>
-        <h2 class="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">Son Blog Yazıları</h2>
-        <p class="font-sans text-gray-600 max-w-2xl mx-auto">
-          Psikoloji, ruh sağlığı ve kişisel gelişim üzerine güncel yazılar.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post) => (
-          <article class="bg-white rounded-xl overflow-hidden hover:shadow-md transition-shadow" data-reveal>
-            <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <span class="font-serif text-4xl text-primary/40">📝</span>
-            </div>
-            <div class="p-6">
-              <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold px-3 py-1 rounded-full mb-3">{post.data.category}</span>
-              <h3 class="font-serif text-lg font-bold text-gray-800 mb-2">{post.data.title}</h3>
-              <a href={`/blog/${post.id}`} class="text-primary font-sans text-sm font-semibold hover:text-primary/80 transition-colors">Devamını Oku →</a>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div class="text-center mt-8">
-        <a href="/blog" class="inline-flex items-center text-primary font-sans font-semibold hover:text-primary/80 transition-colors">
+  <!-- Blog Önizleme (editoryal stil) -->
+  <section class="py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-12" data-reveal>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-8 h-px bg-gray-300"></span>
+            <span class="font-sans text-xs font-bold uppercase tracking-widest text-gray-500">Son Yazılar</span>
+          </div>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold leading-tight">
+            <span class="text-gray-900">Yazılar ve</span> <span class="text-primary">Düşünceler</span>
+          </h2>
+        </div>
+        <a href="/blog" class="inline-flex items-center gap-2 font-sans text-sm font-semibold text-primary hover:text-primary-soft transition-colors">
           Tüm Yazıları Gör
-          <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
       </div>
+
+      <div class="divide-y divide-gray-200 border-t border-gray-200">
+        {posts.map((post) => (
+          <a href={`/blog/${post.id}`} class="group flex items-center gap-6 py-8" data-reveal>
+            <div class="w-28 h-28 md:w-36 md:h-36 flex-shrink-0 rounded-xl overflow-hidden bg-gradient-to-br from-primary/15 to-accent/15 flex items-center justify-center">
+              <span class="font-serif text-3xl text-primary/40">📝</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="inline-block bg-primary/10 text-primary text-xs font-sans font-semibold uppercase tracking-wide px-3 py-1 rounded-full">{post.data.category}</span>
+                <time datetime={post.data.date.toISOString()} class="font-sans text-xs text-gray-500">
+                  {post.data.date.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </div>
+              <h3 class="font-serif text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">{post.data.title}</h3>
+            </div>
+            <svg class="w-5 h-5 text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary text-white py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-reveal>
+      <h2 class="font-serif text-3xl md:text-5xl font-bold leading-tight mb-6">
+        Yolculuğunuza Başlamaya<br />Hazır mısınız?
+      </h2>
+      <p class="font-sans text-white/85 leading-relaxed max-w-xl mx-auto mb-10">
+        İlk seans, hikayenizi paylaşmanız ve birlikte doğru uyumu keşfetmemiz için bir fırsat — baskı ya da yükümlülük olmadan.
+      </p>
+      <a href="/randevu" class="inline-flex items-center gap-2 bg-white text-primary font-sans font-semibold px-8 py-4 rounded-lg hover:bg-white/90 transition-colors">
+        İlk Seansınızı Ayırtın
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
     </div>
   </section>
 </BaseLayout>
